@@ -24,7 +24,6 @@ class MoveJoystick: AnalogJoystick {
         super.init(substrate: substrateX , stick: stickX)
         
         width = CGFloat(dataX.defaults.float(forKey: "width"))
-        print(width)
         height = CGFloat(dataX.defaults.float(forKey: "height"))
         
         

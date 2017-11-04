@@ -19,8 +19,8 @@ class AimJoystick: AnalogJoystick {
     }
     
     init() {
-        let substrateX = AnalogJoystickSubstrate(diameter: 100, color: .blue, image: UIImage(named: "jSubstrate"))
-        let stickX = AnalogJoystickStick(diameter: 20, color: .blue, image: UIImage(named: "jStick"))
+        let substrateX = AnalogJoystickSubstrate(diameter: 100, color: .green, image: UIImage(named: "jSubstrate"))
+        let stickX = AnalogJoystickStick(diameter: 20, color: .orange, image: UIImage(named: "jStick"))
         super.init(substrate: substrateX , stick: stickX)
         
         width = CGFloat(dataX.defaults.float(forKey: "width"))

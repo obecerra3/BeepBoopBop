@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		193756E91FAE2E9E005F5A70 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 193756E81FAE2E9E005F5A70 /* Main.storyboard */; };
 		19EEC9DB1FAE0EA200C53887 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EEC9DA1FAE0EA200C53887 /* AppDelegate.swift */; };
 		19EEC9E11FAE0EA200C53887 /* SquareScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EEC9E01FAE0EA200C53887 /* SquareScene.swift */; };
 		19EEC9E31FAE0EA200C53887 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EEC9E21FAE0EA200C53887 /* GameViewController.swift */; };
-		19EEC9E61FAE0EA200C53887 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19EEC9E41FAE0EA200C53887 /* Main.storyboard */; };
 		19EEC9E81FAE0EA200C53887 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19EEC9E71FAE0EA200C53887 /* Assets.xcassets */; };
 		19EEC9EB1FAE0EA200C53887 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19EEC9E91FAE0EA200C53887 /* LaunchScreen.storyboard */; };
 		19EEC9F61FAE0EA200C53887 /* Beep_Boop_BopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EEC9F51FAE0EA200C53887 /* Beep_Boop_BopTests.swift */; };
@@ -43,11 +43,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		193756E81FAE2E9E005F5A70 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = SOURCE_ROOT; };
 		19EEC9D71FAE0EA200C53887 /* Beep Boop Bop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Beep Boop Bop.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		19EEC9DA1FAE0EA200C53887 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		19EEC9E01FAE0EA200C53887 /* SquareScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareScene.swift; sourceTree = "<group>"; };
 		19EEC9E21FAE0EA200C53887 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
-		19EEC9E51FAE0EA200C53887 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		19EEC9E71FAE0EA200C53887 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		19EEC9EA1FAE0EA200C53887 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		19EEC9EC1FAE0EA200C53887 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -120,7 +120,7 @@
 				19EECA101FAE126900C53887 /* Animations */,
 				19EECA121FAE128800C53887 /* Scripts */,
 				19EEC9E71FAE0EA200C53887 /* Assets.xcassets */,
-				19EEC9E41FAE0EA200C53887 /* Main.storyboard */,
+				193756E81FAE2E9E005F5A70 /* Main.storyboard */,
 				19EEC9E91FAE0EA200C53887 /* LaunchScreen.storyboard */,
 				19EEC9EC1FAE0EA200C53887 /* Info.plist */,
 			);
@@ -291,7 +291,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19EEC9E61FAE0EA200C53887 /* Main.storyboard in Resources */,
+				193756E91FAE2E9E005F5A70 /* Main.storyboard in Resources */,
 				19EEC9E81FAE0EA200C53887 /* Assets.xcassets in Resources */,
 				19EEC9EB1FAE0EA200C53887 /* LaunchScreen.storyboard in Resources */,
 			);
@@ -364,15 +364,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		19EEC9E41FAE0EA200C53887 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				19EEC9E51FAE0EA200C53887 /* Base */,
-			);
-			name = Main.storyboard;
-			path = Scripts;
-			sourceTree = "<group>";
-		};
 		19EEC9E91FAE0EA200C53887 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
