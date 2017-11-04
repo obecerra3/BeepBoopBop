@@ -42,7 +42,7 @@ class SquarePlayer : SKSpriteNode {
         effectNode.shouldRasterize = true
         effectNode.addChild(self)
         effectNode.filter = CIFilter(name: "CIGaussianBlur", withInputParameters: ["inputRadius": 1])
-        return effectNodes
+        return effectNode
     }
     
     

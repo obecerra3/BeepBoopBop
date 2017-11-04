@@ -53,11 +53,11 @@ class SquareScene: SKScene {
     
     func moveHandlers() {
         mover.trackingHandler = { jData in
-            
+            self.player.physicsBody?.velocity = CGVector(dx: jData.velocity.x * 2.5, dy: jData.velocity.y * 2.5)
         }
         
         mover.stopHandler = {
-            
+            self.player.physicsBody?.velocity = CGVector(dx: 0.0, dy: 0.0)
         }
     }
     
