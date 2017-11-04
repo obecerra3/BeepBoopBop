@@ -19,6 +19,9 @@
 		19EECA161FAE147600C53887 /* CircleScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EECA151FAE147600C53887 /* CircleScene.swift */; };
 		19EECA181FAE15DB00C53887 /* AnalogJoystick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EECA171FAE15DB00C53887 /* AnalogJoystick.swift */; };
 		19EECA1A1FAE15F600C53887 /* StartScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EECA191FAE15F600C53887 /* StartScene.swift */; };
+		19EECA1C1FAE167000C53887 /* MoveJoystick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EECA1B1FAE167000C53887 /* MoveJoystick.swift */; };
+		19EECA1E1FAE168700C53887 /* AimJoystick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EECA1D1FAE168700C53887 /* AimJoystick.swift */; };
+		19EECA201FAE16F200C53887 /* DataBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EECA1F1FAE16F200C53887 /* DataBank.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +60,9 @@
 		19EECA151FAE147600C53887 /* CircleScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleScene.swift; sourceTree = "<group>"; };
 		19EECA171FAE15DB00C53887 /* AnalogJoystick.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalogJoystick.swift; sourceTree = "<group>"; };
 		19EECA191FAE15F600C53887 /* StartScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScene.swift; sourceTree = "<group>"; };
+		19EECA1B1FAE167000C53887 /* MoveJoystick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveJoystick.swift; sourceTree = "<group>"; };
+		19EECA1D1FAE168700C53887 /* AimJoystick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimJoystick.swift; sourceTree = "<group>"; };
+		19EECA1F1FAE16F200C53887 /* DataBank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBank.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,8 +172,11 @@
 			isa = PBXGroup;
 			children = (
 				19EECA171FAE15DB00C53887 /* AnalogJoystick.swift */,
+				19EECA1B1FAE167000C53887 /* MoveJoystick.swift */,
+				19EECA1D1FAE168700C53887 /* AimJoystick.swift */,
 				19EEC9DA1FAE0EA200C53887 /* AppDelegate.swift */,
 				19EEC9E21FAE0EA200C53887 /* GameViewController.swift */,
+				19EECA1F1FAE16F200C53887 /* DataBank.swift */,
 			);
 			path = Scripts;
 			sourceTree = "<group>";
@@ -310,7 +319,10 @@
 				19EECA1A1FAE15F600C53887 /* StartScene.swift in Sources */,
 				19EECA181FAE15DB00C53887 /* AnalogJoystick.swift in Sources */,
 				19EEC9E11FAE0EA200C53887 /* SquareScene.swift in Sources */,
+				19EECA1C1FAE167000C53887 /* MoveJoystick.swift in Sources */,
+				19EECA201FAE16F200C53887 /* DataBank.swift in Sources */,
 				19EEC9E31FAE0EA200C53887 /* GameViewController.swift in Sources */,
+				19EECA1E1FAE168700C53887 /* AimJoystick.swift in Sources */,
 				19EECA141FAE145800C53887 /* TriangleScene.swift in Sources */,
 				19EEC9DB1FAE0EA200C53887 /* AppDelegate.swift in Sources */,
 			);
@@ -481,6 +493,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B7GJY6DADZ;
 				INFOPLIST_FILE = "Beep Boop Bop/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.OscarBecerra.Beep-Boop-Bop";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -496,6 +509,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B7GJY6DADZ;
 				INFOPLIST_FILE = "Beep Boop Bop/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.OscarBecerra.Beep-Boop-Bop";
 				PRODUCT_NAME = "$(TARGET_NAME)";
