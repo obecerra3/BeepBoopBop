@@ -41,8 +41,8 @@ class SquarePlayer : SKSpriteNode {
         let effectNode = SKEffectNode()
         effectNode.shouldRasterize = true
         effectNode.addChild(self)
-        effectNode.filter = CIFilter(name: "CIGaussianBlur", withInputParameters: ["inputRadius": 2])
-        return effectNode
+        effectNode.filter = CIFilter(name: "CIGaussianBlur", withInputParameters: ["inputRadius": 1])
+        return effectNodes
     }
     
     

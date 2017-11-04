@@ -7,6 +7,7 @@
 //
 
 import SpriteKit
+import SceneKit
 
 let data = DataBank()
 
@@ -23,11 +24,16 @@ class SquareScene: SKScene {
         data.defaults.set(size.height, forKey: "height")        
         addChild(mover)
         addChild(aimer)
+        
+        moveHandlers()
+        aimHandlers()
     }
     
     func playerInit(){
         player.position = CGPoint(x: size.width * 0.5, y: size.height * 0.5)
-        self.addChild(player.glowInit())
+        player.size.width = size.width * 0.06
+        player.size.height = size.width * 0.06
+        addChild(player.glowInit())
     }
     
     
@@ -42,5 +48,23 @@ class SquareScene: SKScene {
     
     
     override func update(_ currentTime: TimeInterval) {
+        //camera?.position = player.position
     }
+    
+    func moveHandlers() {
+        mover.trackingHandler = { jData in
+            
+        }
+        
+        mover.stopHandler = {
+            
+        }
+    }
+    
+    func aimHandlers() {
+        
+    }
+    
+    
+    
 }
