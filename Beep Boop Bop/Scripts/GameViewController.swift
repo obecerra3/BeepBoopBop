@@ -15,7 +15,7 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let view = self.view as! SKView
-        let scene = SquareScene(size: view.bounds.size)
+        let scene = CircleScene(size: view.bounds.size)
         scene.scaleMode = .resizeFill
         scene.backgroundColor = .black
         view.presentScene(scene)

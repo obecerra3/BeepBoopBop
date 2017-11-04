@@ -10,6 +10,8 @@ import SpriteKit
 
 class CirclePlayer : SKSpriteNode {
     
+    var inAir = false
+    
     let mainTexture = SKTexture(imageNamed: "circleImage.png")
     
     init () {
@@ -18,7 +20,7 @@ class CirclePlayer : SKSpriteNode {
                    color: UIColor.white,
                    size: mainTexture.size() )
         self.physicsBody = SKPhysicsBody(circleOfRadius: (mainTexture.size().width/2))
-        
+        self.name = "player"
         physicsInit()
     }
     
@@ -29,7 +31,8 @@ class CirclePlayer : SKSpriteNode {
     func physicsInit() {
         self.zPosition = 1
         self.physicsBody?.categoryBitMask = 0b1 //player bit mask
-        self.physicsBody?.collisionBitMask = 0b11 //collision the environment
+        self.physicsBody?.contactTestBitMask = 0b111 //collision the environment
+        self.physicsBody?.collisionBitMask = 0b111 //collision the environment
         self.physicsBody?.affectedByGravity = true
         self.physicsBody?.allowsRotation = false
         self.physicsBody?.usesPreciseCollisionDetection = true

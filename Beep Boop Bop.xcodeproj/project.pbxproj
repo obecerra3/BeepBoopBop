@@ -15,7 +15,6 @@
 		19EEC9EB1FAE0EA200C53887 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19EEC9E91FAE0EA200C53887 /* LaunchScreen.storyboard */; };
 		19EEC9F61FAE0EA200C53887 /* Beep_Boop_BopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EEC9F51FAE0EA200C53887 /* Beep_Boop_BopTests.swift */; };
 		19EECA011FAE0EA300C53887 /* Beep_Boop_BopUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EECA001FAE0EA300C53887 /* Beep_Boop_BopUITests.swift */; };
-		19EECA141FAE145800C53887 /* TriangleScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EECA131FAE145800C53887 /* TriangleScene.swift */; };
 		19EECA161FAE147600C53887 /* CircleScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EECA151FAE147600C53887 /* CircleScene.swift */; };
 		19EECA181FAE15DB00C53887 /* AnalogJoystick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EECA171FAE15DB00C53887 /* AnalogJoystick.swift */; };
 		19EECA1A1FAE15F600C53887 /* StartScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EECA191FAE15F600C53887 /* StartScene.swift */; };
@@ -24,6 +23,8 @@
 		19EECA201FAE16F200C53887 /* DataBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EECA1F1FAE16F200C53887 /* DataBank.swift */; };
 		19EECA221FAE1AF000C53887 /* SquarePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EECA211FAE1AF000C53887 /* SquarePlayer.swift */; };
 		9B882EE31FAE45B800B9D7F8 /* CirclePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B882EE21FAE45B800B9D7F8 /* CirclePlayer.swift */; };
+		9B882EE51FAE506D00B9D7F8 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B882EE41FAE506D00B9D7F8 /* Platform.swift */; };
+		9B882EE71FAE6A1F00B9D7F8 /* Bottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B882EE61FAE6A1F00B9D7F8 /* Bottom.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,7 +59,6 @@
 		19EEC9FC1FAE0EA300C53887 /* Beep Boop BopUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Beep Boop BopUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		19EECA001FAE0EA300C53887 /* Beep_Boop_BopUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Beep_Boop_BopUITests.swift; sourceTree = "<group>"; };
 		19EECA021FAE0EA300C53887 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		19EECA131FAE145800C53887 /* TriangleScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriangleScene.swift; sourceTree = "<group>"; };
 		19EECA151FAE147600C53887 /* CircleScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleScene.swift; sourceTree = "<group>"; };
 		19EECA171FAE15DB00C53887 /* AnalogJoystick.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalogJoystick.swift; sourceTree = "<group>"; };
 		19EECA191FAE15F600C53887 /* StartScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScene.swift; sourceTree = "<group>"; };
@@ -67,6 +67,8 @@
 		19EECA1F1FAE16F200C53887 /* DataBank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBank.swift; sourceTree = "<group>"; };
 		19EECA211FAE1AF000C53887 /* SquarePlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquarePlayer.swift; sourceTree = "<group>"; };
 		9B882EE21FAE45B800B9D7F8 /* CirclePlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CirclePlayer.swift; sourceTree = "<group>"; };
+		9B882EE41FAE506D00B9D7F8 /* Platform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Platform.swift; sourceTree = "<group>"; };
+		9B882EE61FAE6A1F00B9D7F8 /* Bottom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bottom.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,7 +153,9 @@
 			isa = PBXGroup;
 			children = (
 				19EECA211FAE1AF000C53887 /* SquarePlayer.swift */,
+				9B882EE61FAE6A1F00B9D7F8 /* Bottom.swift */,
 				9B882EE21FAE45B800B9D7F8 /* CirclePlayer.swift */,
+				9B882EE41FAE506D00B9D7F8 /* Platform.swift */,
 			);
 			path = Sprites;
 			sourceTree = "<group>";
@@ -168,7 +172,6 @@
 			children = (
 				19EEC9E01FAE0EA200C53887 /* SquareScene.swift */,
 				19EECA191FAE15F600C53887 /* StartScene.swift */,
-				19EECA131FAE145800C53887 /* TriangleScene.swift */,
 				19EECA151FAE147600C53887 /* CircleScene.swift */,
 			);
 			path = Scenes;
@@ -321,9 +324,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B882EE71FAE6A1F00B9D7F8 /* Bottom.swift in Sources */,
 				19EECA221FAE1AF000C53887 /* SquarePlayer.swift in Sources */,
 				19EECA161FAE147600C53887 /* CircleScene.swift in Sources */,
 				19EECA1A1FAE15F600C53887 /* StartScene.swift in Sources */,
+				9B882EE51FAE506D00B9D7F8 /* Platform.swift in Sources */,
 				19EECA181FAE15DB00C53887 /* AnalogJoystick.swift in Sources */,
 				9B882EE31FAE45B800B9D7F8 /* CirclePlayer.swift in Sources */,
 				19EEC9E11FAE0EA200C53887 /* SquareScene.swift in Sources */,
@@ -331,7 +336,6 @@
 				19EECA201FAE16F200C53887 /* DataBank.swift in Sources */,
 				19EEC9E31FAE0EA200C53887 /* GameViewController.swift in Sources */,
 				19EECA1E1FAE168700C53887 /* AimJoystick.swift in Sources */,
-				19EECA141FAE145800C53887 /* TriangleScene.swift in Sources */,
 				19EEC9DB1FAE0EA200C53887 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
