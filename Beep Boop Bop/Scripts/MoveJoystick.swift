@@ -26,10 +26,9 @@ class MoveJoystick: AnalogJoystick {
         width = CGFloat(dataX.defaults.float(forKey: "width"))
         height = CGFloat(dataX.defaults.float(forKey: "height"))
         
-        
-        self.substrate.diameter = width * 0.15
-        self.stick.diameter = width * 0.1
-        self.position = CGPoint(x: width * -0.37 , y: height * -0.29)
+        self.substrate.diameter = width * 0.11
+        self.stick.diameter = width * 0.09
+        self.position = CGPoint(x: width * 0.1 , y: height * 0.15)
     }
     
     

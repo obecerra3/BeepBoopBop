@@ -19,17 +19,15 @@ class SquareScene: SKScene {
     
     override func didMove(to view: SKView) {
         playerInit()
-        
         data.defaults.set(size.width, forKey: "width")
-        data.defaults.set(size.height, forKey: "height")
-        
+        data.defaults.set(size.height, forKey: "height")        
         addChild(mover)
         addChild(aimer)
     }
     
     func playerInit(){
-        player.position = CGPoint(x: 100, y: 100)
-        addChild(player)
+        player.position = CGPoint(x: size.width * 0.5, y: size.height * 0.5)
+        self.addChild(player.glowInit())
     }
     
     

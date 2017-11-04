@@ -21,7 +21,6 @@ class SquarePlayer : SKSpriteNode {
                                                              height: mainTexture.size().height))
         
         physicsInit()
-        glowInit()
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -38,11 +37,12 @@ class SquarePlayer : SKSpriteNode {
         self.physicsBody?.usesPreciseCollisionDetection = true
     }
     
-    func glowInit() {
+    func glowInit() -> SKEffectNode {
         let effectNode = SKEffectNode()
         effectNode.shouldRasterize = true
-        effectNode.filter = CIFilter(name: "CIGaussianBlur", withInputParameters: ["inputRadius": 30])
-        //self.addChild(effectNode)
+        effectNode.addChild(self)
+        effectNode.filter = CIFilter(name: "CIGaussianBlur", withInputParameters: ["inputRadius": 2])
+        return effectNode
     }
     
     
