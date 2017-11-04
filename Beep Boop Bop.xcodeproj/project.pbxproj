@@ -23,6 +23,7 @@
 		19EECA1E1FAE168700C53887 /* AimJoystick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EECA1D1FAE168700C53887 /* AimJoystick.swift */; };
 		19EECA201FAE16F200C53887 /* DataBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EECA1F1FAE16F200C53887 /* DataBank.swift */; };
 		19EECA221FAE1AF000C53887 /* SquarePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EECA211FAE1AF000C53887 /* SquarePlayer.swift */; };
+		9B882EE31FAE45B800B9D7F8 /* CirclePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B882EE21FAE45B800B9D7F8 /* CirclePlayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		19EECA1D1FAE168700C53887 /* AimJoystick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimJoystick.swift; sourceTree = "<group>"; };
 		19EECA1F1FAE16F200C53887 /* DataBank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBank.swift; sourceTree = "<group>"; };
 		19EECA211FAE1AF000C53887 /* SquarePlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquarePlayer.swift; sourceTree = "<group>"; };
+		9B882EE21FAE45B800B9D7F8 /* CirclePlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CirclePlayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				19EECA211FAE1AF000C53887 /* SquarePlayer.swift */,
+				9B882EE21FAE45B800B9D7F8 /* CirclePlayer.swift */,
 			);
 			path = Sprites;
 			sourceTree = "<group>";
@@ -322,6 +325,7 @@
 				19EECA161FAE147600C53887 /* CircleScene.swift in Sources */,
 				19EECA1A1FAE15F600C53887 /* StartScene.swift in Sources */,
 				19EECA181FAE15DB00C53887 /* AnalogJoystick.swift in Sources */,
+				9B882EE31FAE45B800B9D7F8 /* CirclePlayer.swift in Sources */,
 				19EEC9E11FAE0EA200C53887 /* SquareScene.swift in Sources */,
 				19EECA1C1FAE167000C53887 /* MoveJoystick.swift in Sources */,
 				19EECA201FAE16F200C53887 /* DataBank.swift in Sources */,
