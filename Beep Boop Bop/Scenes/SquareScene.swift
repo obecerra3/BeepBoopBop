@@ -8,25 +8,38 @@
 
 import SpriteKit
 
+let data = DataBank()
+
 class SquareScene: SKScene {
     
+    let player = SquarePlayer()
+    
+    let mover = MoveJoystick()
+    let aimer = AimJoystick()
+    
     override func didMove(to view: SKView) {
+        playerInit()
+        
+        data.defaults.set(size.width, forKey: "width")
+        data.defaults.set(size.height, forKey: "height")
+        
+        addChild(mover)
+        addChild(aimer)
+    }
+    
+    func playerInit(){
+        player.position = CGPoint(x: 100, y: 100)
+        addChild(player)
     }
     
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { }
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { }
-    }
-    
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
     }
     
     

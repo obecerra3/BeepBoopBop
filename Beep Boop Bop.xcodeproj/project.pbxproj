@@ -22,7 +22,7 @@
 		19EECA1C1FAE167000C53887 /* MoveJoystick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EECA1B1FAE167000C53887 /* MoveJoystick.swift */; };
 		19EECA1E1FAE168700C53887 /* AimJoystick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EECA1D1FAE168700C53887 /* AimJoystick.swift */; };
 		19EECA201FAE16F200C53887 /* DataBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EECA1F1FAE16F200C53887 /* DataBank.swift */; };
-		19EECA221FAE1AF000C53887 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EECA211FAE1AF000C53887 /* Player.swift */; };
+		19EECA221FAE1AF000C53887 /* SquarePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EECA211FAE1AF000C53887 /* SquarePlayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,7 +64,7 @@
 		19EECA1B1FAE167000C53887 /* MoveJoystick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveJoystick.swift; sourceTree = "<group>"; };
 		19EECA1D1FAE168700C53887 /* AimJoystick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimJoystick.swift; sourceTree = "<group>"; };
 		19EECA1F1FAE16F200C53887 /* DataBank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBank.swift; sourceTree = "<group>"; };
-		19EECA211FAE1AF000C53887 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		19EECA211FAE1AF000C53887 /* SquarePlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquarePlayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,12 +115,12 @@
 		19EEC9D91FAE0EA200C53887 /* Beep Boop Bop */ = {
 			isa = PBXGroup;
 			children = (
-				19EECA121FAE128800C53887 /* Scripts */,
 				19EECA111FAE127D00C53887 /* Scenes */,
-				19EECA101FAE126900C53887 /* Animations */,
 				19EECA0E1FAE122500C53887 /* Sprites */,
-				19EEC9E41FAE0EA200C53887 /* Main.storyboard */,
+				19EECA101FAE126900C53887 /* Animations */,
+				19EECA121FAE128800C53887 /* Scripts */,
 				19EEC9E71FAE0EA200C53887 /* Assets.xcassets */,
+				19EEC9E41FAE0EA200C53887 /* Main.storyboard */,
 				19EEC9E91FAE0EA200C53887 /* LaunchScreen.storyboard */,
 				19EEC9EC1FAE0EA200C53887 /* Info.plist */,
 			);
@@ -148,7 +148,7 @@
 		19EECA0E1FAE122500C53887 /* Sprites */ = {
 			isa = PBXGroup;
 			children = (
-				19EECA211FAE1AF000C53887 /* Player.swift */,
+				19EECA211FAE1AF000C53887 /* SquarePlayer.swift */,
 			);
 			path = Sprites;
 			sourceTree = "<group>";
@@ -318,7 +318,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19EECA221FAE1AF000C53887 /* Player.swift in Sources */,
+				19EECA221FAE1AF000C53887 /* SquarePlayer.swift in Sources */,
 				19EECA161FAE147600C53887 /* CircleScene.swift in Sources */,
 				19EECA1A1FAE15F600C53887 /* StartScene.swift in Sources */,
 				19EECA181FAE15DB00C53887 /* AnalogJoystick.swift in Sources */,
@@ -370,6 +370,7 @@
 				19EEC9E51FAE0EA200C53887 /* Base */,
 			);
 			name = Main.storyboard;
+			path = Scripts;
 			sourceTree = "<group>";
 		};
 		19EEC9E91FAE0EA200C53887 /* LaunchScreen.storyboard */ = {
