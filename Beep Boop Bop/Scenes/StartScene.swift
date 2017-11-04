@@ -1,5 +1,5 @@
 //
-//  SquareScene.swift
+//  StartScene.swift
 //  Beep Boop Bop
 //
 //  Created by Oscar Becerra on 11/4/17.
@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class SquareScene: SKScene {
+class StartScene: SKScene {
     
     override func didMove(to view: SKView) {
     }
@@ -33,3 +33,4 @@ class SquareScene: SKScene {
     override func update(_ currentTime: TimeInterval) {
     }
 }
+

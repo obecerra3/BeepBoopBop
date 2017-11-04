@@ -16,7 +16,7 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         super.viewDidLoad()
         let view = self.view as! SKView
-        let scene = GameScene(size: view.bounds.size)
+        let scene = StartScene(size: view.bounds.size)
         scene.scaleMode = .resizeFill
         scene.backgroundColor = .white
         view.presentScene(scene)
