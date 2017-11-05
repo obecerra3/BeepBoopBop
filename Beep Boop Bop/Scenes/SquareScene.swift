@@ -27,6 +27,7 @@ class SquareScene: SKScene, SKPhysicsContactDelegate {
     override func didMove(to view: SKView) {
         border()
         enemyArray = []
+        addChild(f)
         
         score.text = "Score: \(data.currentScore)"
         score.fontSize = size.width * 0.02
@@ -134,7 +135,6 @@ class SquareScene: SKScene, SKPhysicsContactDelegate {
                 f.fontSize = size.width * 0.02
                 f.fontColor = .white
                 f.position = CGPoint(x: size.width * 0.07, y: size.height * 0.8)
-                addChild(f)
                 player.fireRate *= 0.5
             }
         }
@@ -289,12 +289,14 @@ class SquareScene: SKScene, SKPhysicsContactDelegate {
         } else {
             player.gainHealth()
             
-            if arc4random_uniform(3) == 0 {
+            if arc4random_uniform(4) == 0 {
                 topAndBottom()
-            } else if arc4random_uniform(3) == 0 {
+            } else if arc4random_uniform(4) == 0 {
                 squareFormation()
-            } else {
+            } else if arc4random_uniform(4) == 0 {
                 boxed()
+            } else {
+                rightAndLeft()
             }
         }
         
@@ -318,13 +320,7 @@ class SquareScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
-    func special3() {
-        
-    }
-    
-    func boxed() {
-        topAndBottom()
-        
+    func rightAndLeft() {
         let enemy9 = Enemy()
         enemy9.position = CGPoint(x: size.width * 0.25, y: size.height * 0.74)
         enemyArray.append(enemy9)
@@ -354,6 +350,11 @@ class SquareScene: SKScene, SKPhysicsContactDelegate {
         enemy14.position = CGPoint(x: size.width * 0.7, y: size.height * 0.26)
         enemyArray.append(enemy14)
         addChild(enemy14)
+    }
+    
+    func boxed() {
+        topAndBottom()
+        rightAndLeft()
     }
     
     func squareFormation() {
