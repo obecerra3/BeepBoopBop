@@ -16,7 +16,7 @@
 
 import SpriteKit
 
-class TriangleScene: SKScene {
+class GameOverScene: SKScene {
     
     override func didMove(to view: SKView) {
     }

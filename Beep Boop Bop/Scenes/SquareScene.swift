@@ -61,11 +61,14 @@ class SquareScene: SKScene, SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
         guard let nodeA = contact.bodyA.node else { return }
         guard let nodeB = contact.bodyB.node else { return }
-        //print(nodeA.name)
-        //print(nodeB.name)
         
         if nodeA.name == "wall" && nodeB.name == "laser" {
             nodeB.removeFromParent()
+        } else if nodeB.name == "laser" && nodeA.name == "enemy" {
+            if nodeB.alpha == 1.00 {
+                let target = nodes(at: nodeA.position)[0]
+                (target as? Enemy)!.loseHealth()
+            }
         }
     }
     
@@ -122,6 +125,11 @@ class SquareScene: SKScene, SKPhysicsContactDelegate {
         laser.physicsBody?.contactTestBitMask = 8 | 1 | 2
         laser.physicsBody?.usesPreciseCollisionDetection = true
         laser.position = shooter.position
+        
+        if (shooter.laserColor == .red) {
+            laser.alpha = 0.99
+        }
+        
         laser.name = "laser"
         addChild(laser)
         let t = trajectory.normalized()
