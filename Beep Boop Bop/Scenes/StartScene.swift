@@ -14,6 +14,7 @@ class StartScene: SKScene {
     
     let startLabel = SKLabelNode(fontNamed: "pixelFont.ttf")
     let highLabel = SKLabelNode(fontNamed: "pixelFont.ttf")
+    let scoreLabel = SKLabelNode(fontNamed: "pixelFont.ttf")
     
     override func didMove(to view: SKView) {
         
@@ -26,17 +27,28 @@ class StartScene: SKScene {
         startLabel.position = CGPoint(x: size.width * 0.5, y: size.height * 0.5)
         addChild(startLabel)
         
+        scoreLabel.text = "Last Score: \(data.currentScore)!"
+        scoreLabel.fontSize = size.width * 0.04
+        scoreLabel.fontColor = .white
+        scoreLabel.position = CGPoint(x: size.width * 0.5, y: size.height * 0.18)
+        
+        if (data.currentScore > 0) {
+            addChild(scoreLabel)
+        }
+        
         highLabel.text = "High Score: \(data.defaults.integer(forKey: "highscore"))"
         highLabel.fontColor = .white
         highLabel.fontSize = size.width * 0.03
         highLabel.position = CGPoint(x: size.width * 0.5, y: size.height * 0.3)
         addChild(highLabel)
         
-        data.currentScore = 0
     }
     
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        data.currentScore = 0
+        self.removeAllActions()
+        self.removeAllChildren()
         let view = self.view as SKView!
         let scene = SquareScene(size: (view?.bounds.size)!)
         scene.scaleMode = .resizeFill
