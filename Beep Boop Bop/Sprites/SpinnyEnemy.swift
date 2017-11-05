@@ -41,7 +41,7 @@ class SpinnyEnemy : SKSpriteNode {
         self.physicsBody?.affectedByGravity = false
         self.physicsBody?.allowsRotation = true
         self.physicsBody?.usesPreciseCollisionDetection = true
-        self.physicsBody?.applyAngularImpulse(10)
+        self.physicsBody?.applyAngularImpulse(50)
     }
     
     func loseHealth() {

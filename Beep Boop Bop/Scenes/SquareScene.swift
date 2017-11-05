@@ -88,10 +88,12 @@ class SquareScene: SKScene, SKPhysicsContactDelegate {
             }
         } else if nodeB.name == "laser" && nodeA.name == "player" {
             if nodeB.alpha == 0.99 {
-                let target = nodes(at: nodeA.position)[0]
-                (target as? SquarePlayer)!.loseHealth()
-                if (target as? SquarePlayer)!.health < 1 {
-                    gameOver()
+                if nodes(at: nodeA.position) != [] {
+                    let target = nodes(at: nodeA.position)[0]
+                    (target as? SquarePlayer)!.loseHealth()
+                    if (target as? SquarePlayer)!.health < 1 {
+                        gameOver()
+                    }
                 }
                 nodeB.removeFromParent()
             }
@@ -346,13 +348,13 @@ class SquareScene: SKScene, SKPhysicsContactDelegate {
                 squareFormation()
             } else if arc4random_uniform(4) == 0 {
                 rightAndLeft()
-                if arc4random_uniform(3) == 0{
+                if arc4random_uniform(2) == 0{
                     spinnyAdd(CGPoint(x: size.width * 0.3, y: size.height * 0.5))
                     spinnyAdd(CGPoint(x: size.width * 0.6, y: size.height * 0.5))
                 }
             } else {
                 boxed()
-                if arc4random_uniform(3) == 0{ spinnyAdd(CGPoint(x: size.width * 0.5, y: size.height * 0.5)) }
+                if arc4random_uniform(2) == 0{ spinnyAdd(CGPoint(x: size.width * 0.5, y: size.height * 0.5)) }
             }
         }
         
