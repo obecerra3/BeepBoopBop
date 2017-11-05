@@ -33,12 +33,28 @@ class SquarePlayer : SKSpriteNode {
     
     func physicsInit() {
         self.zPosition = 2
-        self.physicsBody?.categoryBitMask = 0b1 //player bit mask
-        self.physicsBody?.collisionBitMask = 0b10 & 0b11 //collision with enemies and the environment
-        self.physicsBody?.contactTestBitMask = 0b100 //contact test with lasers
+        self.physicsBody?.categoryBitMask = 1 //player bit mask
+        self.physicsBody?.collisionBitMask = 2 | 8 //collision with enemies and the environment
+        self.physicsBody?.contactTestBitMask = 4 //contact test with lasers
         self.physicsBody?.affectedByGravity = false
         self.physicsBody?.allowsRotation = false
         self.physicsBody?.usesPreciseCollisionDetection = true
+    }
+    
+    func loseHealth() {
+        self.health -= 1
+        if self.health < 1 {
+            let death = SKAction.scale(to: 0.0, duration: 0.75)
+            let remover = SKAction.run { self.removeFromParent() }
+            self.run(SKAction.sequence([death,remover]))
+        }
+    }
+    
+    func gainHealth() {
+        if self.health < 3 {
+            self.health += 1
+        }
+        
     }
     
     

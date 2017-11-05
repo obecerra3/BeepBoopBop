@@ -10,6 +10,7 @@ import SpriteKit
 
 class Enemy : SKSpriteNode {
     
+    
     let mainTexture = SKTexture(imageNamed: "enemyImage.png")
     var gunName = "starter"
     var laserColor = UIColor.red
@@ -34,21 +35,23 @@ class Enemy : SKSpriteNode {
     
     func physicsInit() {
         self.zPosition = 2
-        self.physicsBody?.categoryBitMask = 0b10//player bit mask
-        self.physicsBody?.collisionBitMask = 0b1 & 0b10 & 0b10 //collision with enemies and the environment
-        self.physicsBody?.contactTestBitMask = 0b100 //contact test with lasers
+        self.physicsBody?.categoryBitMask = 2//player bit mask
+        self.physicsBody?.collisionBitMask = 1 | 8 | 2  //collision with enemies and the environment
+        self.physicsBody?.contactTestBitMask = 4//contact test with lasers
         self.physicsBody?.affectedByGravity = false
         self.physicsBody?.allowsRotation = false
         self.physicsBody?.usesPreciseCollisionDetection = true
     }
     
-    func glowInit() -> SKEffectNode {
-        let effectNode = SKEffectNode()
-        effectNode.shouldRasterize = true
-        effectNode.addChild(self)
-        effectNode.filter = CIFilter(name: "CIGaussianBlur", withInputParameters: ["inputRadius": 1])
-        return effectNode
+    func loseHealth() {
+        self.health -= 1
+        if self.health < 1 {
+            let death = SKAction.scale(to: 0.0, duration: 0.5)
+            let remover = SKAction.run { self.removeFromParent() }
+            self.run(SKAction.sequence([death,remover]))
+        }
     }
+
     
     
 }

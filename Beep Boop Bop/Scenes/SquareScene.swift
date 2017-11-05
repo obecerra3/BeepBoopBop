@@ -15,8 +15,10 @@ class SquareScene: SKScene, SKPhysicsContactDelegate {
     let mover = MoveJoystick()
     let aimer = AimJoystick()
     
+    var enemyArray = [Enemy()]
+    
+    
     override func didMove(to view: SKView) {
-
         border()
         
         player.position = CGPoint(x: size.width * 0.5, y: size.height * 0.5)
@@ -28,15 +30,17 @@ class SquareScene: SKScene, SKPhysicsContactDelegate {
         moveHandlers()
         aimHandlers()
         
+        self.physicsWorld.contactDelegate = self
+        
+        enemyTime()
     }
-    
     
     func border() {
         let wall = SKShapeNode(rect: CGRect(origin: player.position, size: CGSize(width: size.width * 0.61, height: size.height * 0.92)))
         wall.physicsBody = SKPhysicsBody(edgeLoopFrom: CGRect(origin: player.position, size: CGSize(width: size.width * 0.61, height: size.height * 0.92)))
-        wall.physicsBody?.categoryBitMask = 0b11
-        wall.physicsBody?.collisionBitMask = 0b1 | 0b10
-        wall.physicsBody?.contactTestBitMask = 0b100
+        wall.physicsBody?.categoryBitMask = 8
+        wall.physicsBody?.collisionBitMask = 1 | 2
+        wall.physicsBody?.contactTestBitMask = 4
         wall.strokeColor = .white
         wall.physicsBody?.isDynamic = false
         wall.lineWidth *= 3
@@ -45,20 +49,22 @@ class SquareScene: SKScene, SKPhysicsContactDelegate {
         addChild(wall)
     }
     
+    func enemyTime() {
+        let enemy1 = Enemy()
+        enemy1.position = CGPoint(x: size.width * 0.5, y: size.height * 0.8)
+        enemyArray.append(enemy1)
+        addChild(enemy1)
+    }
+    
     
     
     func didBegin(_ contact: SKPhysicsContact) {
-        print("ithappened1")
         guard let nodeA = contact.bodyA.node else { return }
         guard let nodeB = contact.bodyB.node else { return }
-        print(nodeA.name)
-        print(nodeB.name)
+        //print(nodeA.name)
+        //print(nodeB.name)
         
-        if nodeA.name == "laser" && nodeB.name == "wall" {
-            print("ithappened2")
-            nodeA.removeFromParent()
-        } else if nodeA.name == "wall" && nodeB.name == "laser" {
-            print("ithappened")
+        if nodeA.name == "wall" && nodeB.name == "laser" {
             nodeB.removeFromParent()
         }
     }
@@ -88,7 +94,7 @@ class SquareScene: SKScene, SKPhysicsContactDelegate {
     
     func aimHandlers() {
         aimer.beginHandler = {
-            let waiter = SKAction.wait(forDuration: 0.3)
+            let waiter = SKAction.wait(forDuration: 0.2)
             self.run(waiter, withKey: "waiter")
         }
         
@@ -111,11 +117,12 @@ class SquareScene: SKScene, SKPhysicsContactDelegate {
         laser.zRotation = angle
         laser.physicsBody?.allowsRotation = false
         laser.physicsBody?.affectedByGravity = false
-        laser.physicsBody?.categoryBitMask = 0b100
+        laser.physicsBody?.categoryBitMask = 4
         laser.physicsBody?.collisionBitMask = 0
-        laser.physicsBody?.contactTestBitMask = 0b1 | 0b10 | 0b11
+        laser.physicsBody?.contactTestBitMask = 8 | 1 | 2
         laser.physicsBody?.usesPreciseCollisionDetection = true
         laser.position = shooter.position
+        laser.name = "laser"
         addChild(laser)
         let t = trajectory.normalized()
         laser.physicsBody?.velocity = CGVector(dx: t.x * 350, dy: t.y * 350)
