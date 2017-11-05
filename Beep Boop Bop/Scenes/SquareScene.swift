@@ -17,6 +17,7 @@ class SquareScene: SKScene, SKPhysicsContactDelegate {
     
     let score = SKLabelNode(fontNamed: "pixelFont.ttf")
     let health = SKLabelNode(fontNamed: "pixelFont.ttf")
+    let f = SKLabelNode(fontNamed: "pixelFont.ttf")
     
     var enemyArray = [Enemy()]
     
@@ -127,14 +128,13 @@ class SquareScene: SKScene, SKPhysicsContactDelegate {
             self.removeAction(forKey: "enemy1")
             enemyTime(data.currentScore)
             
-            if arc4random_uniform(4) == 1 {
-                let f = SKLabelNode(fontNamed: "pixelFont.ttf")
+            if arc4random_uniform(3) == 1 && self.upgradeCount < 4  {
+                self.upgradeCount += 1
                 f.text = "Gun Upgrade: \(self.upgradeCount)"
                 f.fontSize = size.width * 0.02
                 f.fontColor = .white
                 f.position = CGPoint(x: size.width * 0.07, y: size.height * 0.8)
                 addChild(f)
-                self.upgradeCount += 1
                 player.fireRate *= 0.5
             }
         }
@@ -289,50 +289,13 @@ class SquareScene: SKScene, SKPhysicsContactDelegate {
         } else {
             player.gainHealth()
             
-            let enemy1 = Enemy()
-            enemy1.position = CGPoint(x: size.width * 0.5, y: size.height * 0.85)
-            enemyArray.append(enemy1)
-            addChild(enemy1)
-            
-            let enemy2 = Enemy()
-            enemy2.position = CGPoint(x: size.width * 0.3, y: size.height * 0.85)
-            enemyArray.append(enemy2)
-            addChild(enemy2)
-            
-            let enemy3 = Enemy()
-            enemy3.position = CGPoint(x: size.width * 0.7, y: size.height * 0.85)
-            enemyArray.append(enemy3)
-            addChild(enemy3)
-            
-            let enemy4 = Enemy()
-            enemy4.position = CGPoint(x: size.width * 0.5, y: size.height * 0.5)
-            enemyArray.append(enemy4)
-            addChild(enemy4)
-            
-            let enemy5 = Enemy()
-            enemy5.position = CGPoint(x: size.width * 0.3, y: size.height * 0.5)
-            enemyArray.append(enemy5)
-            addChild(enemy5)
-            
-            let enemy6 = Enemy()
-            enemy6.position = CGPoint(x: size.width * 0.7, y: size.height * 0.5)
-            enemyArray.append(enemy6)
-            addChild(enemy6)
-            
-            let enemy7 = Enemy()
-            enemy7.position = CGPoint(x: size.width * 0.5, y: size.height * 0.15)
-            enemyArray.append(enemy7)
-            addChild(enemy7)
-            
-            let enemy8 = Enemy()
-            enemy8.position = CGPoint(x: size.width * 0.3, y: size.height * 0.15)
-            enemyArray.append(enemy8)
-            addChild(enemy8)
-            
-            let enemy9 = Enemy()
-            enemy9.position = CGPoint(x: size.width * 0.7, y: size.height * 0.15)
-            enemyArray.append(enemy9)
-            addChild(enemy9)
+            if arc4random_uniform(3) == 0 {
+                topAndBottom()
+            } else if arc4random_uniform(3) == 0 {
+                squareFormation()
+            } else {
+                boxed()
+            }
         }
         
         
@@ -350,11 +313,138 @@ class SquareScene: SKScene, SKPhysicsContactDelegate {
                 }
             }
         }
-        
         let waiting = SKAction.wait(forDuration: 1.75)
-        
         run(SKAction.repeatForever(SKAction.sequence([waiting,triggering,firing])), withKey: "enemy1")
         
+    }
+    
+    func special3() {
+        
+    }
+    
+    func boxed() {
+        topAndBottom()
+        
+        let enemy9 = Enemy()
+        enemy9.position = CGPoint(x: size.width * 0.25, y: size.height * 0.74)
+        enemyArray.append(enemy9)
+        addChild(enemy9)
+        
+        let enemy10 = Enemy()
+        enemy10.position = CGPoint(x: size.width * 0.25, y: size.height * 0.52)
+        enemyArray.append(enemy10)
+        addChild(enemy10)
+        
+        let enemy11 = Enemy()
+        enemy11.position = CGPoint(x: size.width * 0.25, y: size.height * 0.26)
+        enemyArray.append(enemy11)
+        addChild(enemy11)
+        
+        let enemy12 = Enemy()
+        enemy12.position = CGPoint(x: size.width * 0.7, y: size.height * 0.74)
+        enemyArray.append(enemy12)
+        addChild(enemy12)
+        
+        let enemy13 = Enemy()
+        enemy13.position = CGPoint(x: size.width * 0.7, y: size.height * 0.52)
+        enemyArray.append(enemy13)
+        addChild(enemy13)
+        
+        let enemy14 = Enemy()
+        enemy14.position = CGPoint(x: size.width * 0.7, y: size.height * 0.26)
+        enemyArray.append(enemy14)
+        addChild(enemy14)
+    }
+    
+    func squareFormation() {
+        
+        let enemy1 = Enemy()
+        enemy1.position = CGPoint(x: size.width * 0.5, y: size.height * 0.85)
+        enemyArray.append(enemy1)
+        addChild(enemy1)
+        
+        let enemy2 = Enemy()
+        enemy2.position = CGPoint(x: size.width * 0.3, y: size.height * 0.85)
+        enemyArray.append(enemy2)
+        addChild(enemy2)
+        
+        let enemy3 = Enemy()
+        enemy3.position = CGPoint(x: size.width * 0.7, y: size.height * 0.85)
+        enemyArray.append(enemy3)
+        addChild(enemy3)
+        
+        let enemy4 = Enemy()
+        enemy4.position = CGPoint(x: size.width * 0.5, y: size.height * 0.5)
+        enemyArray.append(enemy4)
+        addChild(enemy4)
+        
+        let enemy5 = Enemy()
+        enemy5.position = CGPoint(x: size.width * 0.3, y: size.height * 0.5)
+        enemyArray.append(enemy5)
+        addChild(enemy5)
+        
+        let enemy6 = Enemy()
+        enemy6.position = CGPoint(x: size.width * 0.7, y: size.height * 0.5)
+        enemyArray.append(enemy6)
+        addChild(enemy6)
+        
+        let enemy7 = Enemy()
+        enemy7.position = CGPoint(x: size.width * 0.5, y: size.height * 0.15)
+        enemyArray.append(enemy7)
+        addChild(enemy7)
+        
+        let enemy8 = Enemy()
+        enemy8.position = CGPoint(x: size.width * 0.3, y: size.height * 0.15)
+        enemyArray.append(enemy8)
+        addChild(enemy8)
+        
+        let enemy9 = Enemy()
+        enemy9.position = CGPoint(x: size.width * 0.7, y: size.height * 0.15)
+        enemyArray.append(enemy9)
+        addChild(enemy9)
+        
+    }
+    
+    func topAndBottom() {
+        let enemy1 = Enemy()
+        enemy1.position = CGPoint(x: size.width * 0.25, y: size.height * 0.9)
+        enemyArray.append(enemy1)
+        addChild(enemy1)
+        
+        let enemy2 = Enemy()
+        enemy2.position = CGPoint(x: size.width * 0.4, y: size.height * 0.9)
+        enemyArray.append(enemy2)
+        addChild(enemy2)
+        
+        let enemy3 = Enemy()
+        enemy3.position = CGPoint(x: size.width * 0.55, y: size.height * 0.9)
+        enemyArray.append(enemy3)
+        addChild(enemy3)
+        
+        let enemy4 = Enemy()
+        enemy4.position = CGPoint(x: size.width * 0.7, y: size.height * 0.9)
+        enemyArray.append(enemy4)
+        addChild(enemy4)
+        
+        let enemy5 = Enemy()
+        enemy5.position = CGPoint(x: size.width * 0.25, y: size.height * 0.1)
+        enemyArray.append(enemy5)
+        addChild(enemy5)
+        
+        let enemy6 = Enemy()
+        enemy6.position = CGPoint(x: size.width * 0.4, y: size.height * 0.1)
+        enemyArray.append(enemy6)
+        addChild(enemy6)
+        
+        let enemy7 = Enemy()
+        enemy7.position = CGPoint(x: size.width * 0.55, y: size.height * 0.1)
+        enemyArray.append(enemy7)
+        addChild(enemy7)
+        
+        let enemy8 = Enemy()
+        enemy8.position = CGPoint(x: size.width * 0.7, y: size.height * 0.1)
+        enemyArray.append(enemy8)
+        addChild(enemy8)
     }
     
 }
