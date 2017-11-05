@@ -79,7 +79,7 @@ class SquareScene: SKScene, SKPhysicsContactDelegate {
             if nodeB.alpha == 1.00 {
                 let target = nodes(at: nodeA.position)[0]
                 (target as? Enemy)!.loseHealth()
-                if (target as? Enemy)!.health < 1 {
+                if (target as? Enemy)!.health < 1 && enemyArray.index(of: (target as? Enemy)!) != nil {
                     enemyArray.remove(at: enemyArray.index(of: (target as? Enemy)!)! )
                     data.currentScore += 5
                     score.text = "Score: \(data.currentScore)"
@@ -99,9 +99,29 @@ class SquareScene: SKScene, SKPhysicsContactDelegate {
             if nodeA.alpha == 1.00 {
                 let target = nodes(at: nodeB.position)[0]
                 (target as? Enemy)!.loseHealth()
-                if (target as? Enemy)!.health < 1 {
+                if (target as? Enemy)!.health < 1 && enemyArray.index(of: (target as? Enemy)!) != nil{
                     enemyArray.remove(at: enemyArray.index(of: (target as? Enemy)!)! )
                     data.currentScore += 5
+                    score.text = "Score: \(data.currentScore)"
+                }
+                nodeA.removeFromParent()
+            }
+        } else if nodeB.name == "laser" && nodeA.name == "spinnyEnemy" {
+            if nodeB.alpha == 1.00 {
+                let target = nodes(at: nodeA.position)[0]
+                (target as? SpinnyEnemy)!.loseHealth()
+                if (target as? SpinnyEnemy)!.health < 1  {
+                    data.currentScore += 10
+                    score.text = "Score: \(data.currentScore)"
+                }
+                nodeB.removeFromParent()
+            }
+        } else if nodeB.name == "spinnyEnemy" && nodeA.name == "laser" {
+            if nodeA.alpha == 1.00 {
+                let target = nodes(at: nodeB.position)[0]
+                (target as? SpinnyEnemy)!.loseHealth()
+                if (target as? SpinnyEnemy)!.health < 1  {
+                    data.currentScore += 10
                     score.text = "Score: \(data.currentScore)"
                 }
                 nodeA.removeFromParent()
@@ -129,7 +149,7 @@ class SquareScene: SKScene, SKPhysicsContactDelegate {
             self.removeAction(forKey: "enemy1")
             enemyTime(data.currentScore)
             
-            if arc4random_uniform(3) == 1 && self.upgradeCount < 4  {
+            if arc4random_uniform(3) == 1 && self.upgradeCount < 3  {
                 self.upgradeCount += 1
                 f.text = "Gun Upgrade: \(self.upgradeCount)"
                 f.fontSize = size.width * 0.02
@@ -218,6 +238,31 @@ class SquareScene: SKScene, SKPhysicsContactDelegate {
         self.run(SKAction.sequence([wait,remove]))
     }
     
+    func shootLaser3 (_ shooter: SpinnyEnemy, _ trajectory: CGPoint, _ angle: CGFloat) {
+        let laser = SKSpriteNode(color: shooter.laserColor, size: CGSize(width: shooter.size.width * 0.5, height: shooter.size.width * 0.5))
+        laser.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: shooter.size.width*0.5,
+                                                              height: shooter.size.width*0.5))
+        laser.zPosition = 1
+        laser.zRotation = angle
+        laser.physicsBody?.allowsRotation = false
+        laser.physicsBody?.affectedByGravity = false
+        laser.physicsBody?.categoryBitMask = 4
+        laser.physicsBody?.collisionBitMask = 0
+        laser.physicsBody?.contactTestBitMask = 8 | 1 | 2
+        laser.physicsBody?.usesPreciseCollisionDetection = true
+        laser.position = shooter.position
+        laser.alpha = 0.99
+        
+        laser.name = "laser"
+        addChild(laser)
+        let t = trajectory.normalized()
+        laser.physicsBody?.velocity = CGVector(dx: t.x * 75, dy: t.y * 75)
+        
+        let remove = SKAction.run { laser.removeFromParent() }
+        let wait = SKAction.wait(forDuration: 2.0)
+        self.run(SKAction.sequence([wait,remove]))
+    }
+    
     func gameOver() {
         if data.currentScore > data.defaults.integer(forKey: "highscore") {
             data.defaults.set(data.currentScore, forKey: "highscore")
@@ -239,6 +284,8 @@ class SquareScene: SKScene, SKPhysicsContactDelegate {
             enemy1.position = CGPoint(x: size.width * 0.5, y: size.height * 0.8)
             enemyArray.append(enemy1)
             addChild(enemy1)
+            
+            
         } else if s < 40 {
             let enemy2 = Enemy()
             enemy2.position = CGPoint(x: size.width * 0.5, y: size.height * 0.8)
@@ -254,6 +301,9 @@ class SquareScene: SKScene, SKPhysicsContactDelegate {
             enemy3.position = CGPoint(x: size.width * 0.7, y: size.height * 0.2)
             enemyArray.append(enemy3)
             addChild(enemy3)
+            
+            if arc4random_uniform(2) == 0{ spinnyAdd(CGPoint(x: size.width * 0.5, y: size.height * 0.5)) }
+
         } else if s < 80 {
             player.gainHealth()
             
@@ -291,12 +341,17 @@ class SquareScene: SKScene, SKPhysicsContactDelegate {
             
             if arc4random_uniform(4) == 0 {
                 topAndBottom()
+                if arc4random_uniform(2) == 0{ spinnyAdd(CGPoint(x: size.width * 0.5, y: size.height * 0.5)) }
             } else if arc4random_uniform(4) == 0 {
                 squareFormation()
             } else if arc4random_uniform(4) == 0 {
-                boxed()
-            } else {
                 rightAndLeft()
+                if arc4random_uniform(3) == 0{
+                    spinnyAdd(CGPoint(x: size.width * 0.3, y: size.height * 0.5))
+                    spinnyAdd(CGPoint(x: size.width * 0.6, y: size.height * 0.5))
+                }
+            } else {
+                boxed()
             }
         }
         
@@ -446,6 +501,23 @@ class SquareScene: SKScene, SKPhysicsContactDelegate {
         enemy8.position = CGPoint(x: size.width * 0.7, y: size.height * 0.1)
         enemyArray.append(enemy8)
         addChild(enemy8)
+    }
+    
+    func spinnyAdd(_ c: CGPoint) {
+        let enemy13 = SpinnyEnemy()
+        enemy13.position = c
+        addChild(enemy13)
+        
+        let shooter = SKAction.run {
+            self.shootLaser3(enemy13, CGPoint(x: 1,y: 0), -1.57)
+            self.shootLaser3(enemy13, CGPoint(x: 0,y: 1), 0.0)
+            self.shootLaser3(enemy13, CGPoint(x: -1,y: 0), 1.57)
+            self.shootLaser3(enemy13, CGPoint(x: 0,y: -1), 0.0)
+
+        }
+        let waiter = SKAction.wait(forDuration: 1.5)
+        
+        self.run(SKAction.repeatForever(SKAction.sequence([waiter,shooter])), withKey: "spinnyShot")
     }
     
 }

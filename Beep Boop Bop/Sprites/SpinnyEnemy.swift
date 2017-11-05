@@ -6,24 +6,16 @@
 //  Copyright © 2017 Oscar Becerra. All rights reserved.
 //
 
-//
-//  Enemy.swift
-//  Beep Boop Bop
-//
-//  Created by Oscar Becerra on 11/4/17.
-//  Copyright © 2017 Oscar Becerra. All rights reserved.
-//
-
 import SpriteKit
 
 class SpinnyEnemy : SKSpriteNode {
     
     
-    let mainTexture = SKTexture(imageNamed: "enemyImage.png")
+    let mainTexture = SKTexture(imageNamed: "spinnyEnemyImage.png")
     var gunName = "starter"
-    var laserColor = UIColor.purple
+    var laserColor = UIColor.green
     var damage = 1
-    var health = 3
+    var health = 8
     var fireRate = 0.6
     
     let sceneWidth = data.defaults.float(forKey: "width")
@@ -31,11 +23,10 @@ class SpinnyEnemy : SKSpriteNode {
     
     init () {
         
-        super.init(texture: mainTexture, color: UIColor.red, size: CGSize(width: CGFloat(sceneWidth * 0.04), height: CGFloat(sceneWidth * 0.04)))
-        self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: CGFloat(sceneWidth * 0.04), height: CGFloat(sceneWidth * 0.04)))
-        name = "enemy"
+        super.init(texture: mainTexture, color: UIColor.red, size: CGSize(width: CGFloat(sceneWidth * 0.035), height: CGFloat(sceneWidth * 0.035)))
+        self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: CGFloat(sceneWidth * 0.035), height: CGFloat(sceneWidth * 0.035)))
+        name = "spinnyEnemy"
         physicsInit()
-        trigger()
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -48,8 +39,9 @@ class SpinnyEnemy : SKSpriteNode {
         self.physicsBody?.collisionBitMask = 1 | 8 | 2  //collision with enemies and the environment
         self.physicsBody?.contactTestBitMask = 4//contact test with lasers
         self.physicsBody?.affectedByGravity = false
-        self.physicsBody?.allowsRotation = false
+        self.physicsBody?.allowsRotation = true
         self.physicsBody?.usesPreciseCollisionDetection = true
+        self.physicsBody?.applyAngularImpulse(10)
     }
     
     func loseHealth() {
@@ -62,12 +54,6 @@ class SpinnyEnemy : SKSpriteNode {
             self.run(SKAction.sequence([death,remover]))
         }
     }
-    
-    func trigger() {
-        let spinner = SKAction.rotate(byAngle: 6.28, duration: 3)
-        let shooter = SKAction.run {  }
-    }
-
     
     
 }

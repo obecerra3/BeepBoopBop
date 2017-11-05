@@ -10,6 +10,7 @@
 		193756E91FAE2E9E005F5A70 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 193756E81FAE2E9E005F5A70 /* Main.storyboard */; };
 		193756ED1FAE5D8A005F5A70 /* pixelFont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 193756EC1FAE5D8A005F5A70 /* pixelFont.ttf */; };
 		193B0BBE1FAE64CD004A3B3C /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193B0BBD1FAE64CD004A3B3C /* Enemy.swift */; };
+		197955791FAF3C4D00AA6166 /* SpinnyEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197955781FAF3C4D00AA6166 /* SpinnyEnemy.swift */; };
 		19EEC9DB1FAE0EA200C53887 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EEC9DA1FAE0EA200C53887 /* AppDelegate.swift */; };
 		19EEC9E11FAE0EA200C53887 /* SquareScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EEC9E01FAE0EA200C53887 /* SquareScene.swift */; };
 		19EEC9E31FAE0EA200C53887 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EEC9E21FAE0EA200C53887 /* GameViewController.swift */; };
@@ -46,6 +47,7 @@
 		193756E81FAE2E9E005F5A70 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = SOURCE_ROOT; };
 		193756EC1FAE5D8A005F5A70 /* pixelFont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = pixelFont.ttf; path = "Beep Boop Bop/pixelFont.ttf"; sourceTree = SOURCE_ROOT; };
 		193B0BBD1FAE64CD004A3B3C /* Enemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
+		197955781FAF3C4D00AA6166 /* SpinnyEnemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnyEnemy.swift; sourceTree = "<group>"; };
 		19EEC9D71FAE0EA200C53887 /* Beep Boop Bop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Beep Boop Bop.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		19EEC9DA1FAE0EA200C53887 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		19EEC9E01FAE0EA200C53887 /* SquareScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareScene.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 			children = (
 				19EECA211FAE1AF000C53887 /* SquarePlayer.swift */,
 				193B0BBD1FAE64CD004A3B3C /* Enemy.swift */,
+				197955781FAF3C4D00AA6166 /* SpinnyEnemy.swift */,
 			);
 			path = Sprites;
 			sourceTree = "<group>";
@@ -326,6 +329,7 @@
 				19EECA1C1FAE167000C53887 /* MoveJoystick.swift in Sources */,
 				19EECA201FAE16F200C53887 /* DataBank.swift in Sources */,
 				19EEC9E31FAE0EA200C53887 /* GameViewController.swift in Sources */,
+				197955791FAF3C4D00AA6166 /* SpinnyEnemy.swift in Sources */,
 				193B0BBE1FAE64CD004A3B3C /* Enemy.swift in Sources */,
 				19EECA1E1FAE168700C53887 /* AimJoystick.swift in Sources */,
 				19EEC9DB1FAE0EA200C53887 /* AppDelegate.swift in Sources */,
