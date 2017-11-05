@@ -354,7 +354,7 @@ class SquareScene: SKScene, SKPhysicsContactDelegate {
                 }
             } else {
                 boxed()
-                if arc4random_uniform(2) == 0{ spinnyAdd(CGPoint(x: size.width * 0.5, y: size.height * 0.5)) }
+                if arc4random_uniform(3) == 0{ spinnyAdd(CGPoint(x: size.width * 0.5, y: size.height * 0.5)) }
             }
         }
         

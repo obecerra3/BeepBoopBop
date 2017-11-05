@@ -15,7 +15,7 @@ class SpinnyEnemy : SKSpriteNode {
     var gunName = "starter"
     var laserColor = UIColor.green
     var damage = 1
-    var health = 10
+    var health = 8
     var fireRate = 0.6
     
     let sceneWidth = data.defaults.float(forKey: "width")

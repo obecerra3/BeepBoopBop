@@ -32,8 +32,8 @@ class StartScene: SKScene {
         scoreLabel.fontColor = .white
         scoreLabel.position = CGPoint(x: size.width * 0.5, y: size.height * 0.18)
         
-        let enlarge = SKAction.scale(by: 1.2, duration: 0.8)
-        let shrink = SKAction.scale(by: 0.8, duration: 0.8)
+        let enlarge = SKAction.scale(to: 1.1, duration: 0.8)
+        let shrink = SKAction.scale(to: 0.9, duration: 0.8)
         scoreLabel.run(SKAction.repeatForever(SKAction.sequence([enlarge,shrink])))
         
         if (data.currentScore > 0) {
