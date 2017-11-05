@@ -25,6 +25,7 @@
 		9B882EE31FAE45B800B9D7F8 /* CirclePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B882EE21FAE45B800B9D7F8 /* CirclePlayer.swift */; };
 		9B882EE51FAE506D00B9D7F8 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B882EE41FAE506D00B9D7F8 /* Platform.swift */; };
 		9B882EE71FAE6A1F00B9D7F8 /* Bottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B882EE61FAE6A1F00B9D7F8 /* Bottom.swift */; };
+		9B882EE91FAE8CDF00B9D7F8 /* Wall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B882EE81FAE8CDF00B9D7F8 /* Wall.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		9B882EE21FAE45B800B9D7F8 /* CirclePlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CirclePlayer.swift; sourceTree = "<group>"; };
 		9B882EE41FAE506D00B9D7F8 /* Platform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Platform.swift; sourceTree = "<group>"; };
 		9B882EE61FAE6A1F00B9D7F8 /* Bottom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bottom.swift; sourceTree = "<group>"; };
+		9B882EE81FAE8CDF00B9D7F8 /* Wall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wall.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				19EECA211FAE1AF000C53887 /* SquarePlayer.swift */,
+				9B882EE81FAE8CDF00B9D7F8 /* Wall.swift */,
 				9B882EE61FAE6A1F00B9D7F8 /* Bottom.swift */,
 				9B882EE21FAE45B800B9D7F8 /* CirclePlayer.swift */,
 				9B882EE41FAE506D00B9D7F8 /* Platform.swift */,
@@ -333,6 +336,7 @@
 				9B882EE31FAE45B800B9D7F8 /* CirclePlayer.swift in Sources */,
 				19EEC9E11FAE0EA200C53887 /* SquareScene.swift in Sources */,
 				19EECA1C1FAE167000C53887 /* MoveJoystick.swift in Sources */,
+				9B882EE91FAE8CDF00B9D7F8 /* Wall.swift in Sources */,
 				19EECA201FAE16F200C53887 /* DataBank.swift in Sources */,
 				19EEC9E31FAE0EA200C53887 /* GameViewController.swift in Sources */,
 				19EECA1E1FAE168700C53887 /* AimJoystick.swift in Sources */,

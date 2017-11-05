@@ -1,5 +1,5 @@
 //
-//  Bottom.swift
+//  Wall.swift
 //  Beep Boop Bop
 //
 //  Created by Thomas Seaver on 11/4/17.
@@ -8,18 +8,19 @@
 
 import SpriteKit
 
-class Bottom : SKSpriteNode {
+class Wall : SKSpriteNode {
     
-    let mainTexture = SKTexture(imageNamed: "bottom.png")
+    let mainTexture = SKTexture(imageNamed: "wall.png")
     
     init () {
-        
         super.init(texture: mainTexture,
-                   color: UIColor.clear,
+                   color: UIColor.gray,
                    size: mainTexture.size() )
+        self.size.width = size.width * 0.8
+        self.size.height = size.height * 2.0
         self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: (self.size.width), height: self.size.height))
         physicsInit()
-        self.name = "bottom"
+        self.name = "wall"
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -27,7 +28,7 @@ class Bottom : SKSpriteNode {
     }
     
     func physicsInit() {
-        self.zPosition = 1
+        self.zPosition = 2
         self.physicsBody?.categoryBitMask = 2 //environment bit mask
         self.physicsBody?.collisionBitMask = 7 //collision the player
         self.physicsBody?.contactTestBitMask = 7 //collision the player
@@ -38,4 +39,5 @@ class Bottom : SKSpriteNode {
     }
     
 }
+
 

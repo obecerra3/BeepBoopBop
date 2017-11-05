@@ -18,8 +18,12 @@ class CirclePlayer : SKSpriteNode {
         
         super.init(texture: mainTexture,
                    color: UIColor.white,
-                   size: mainTexture.size() )
-        self.physicsBody = SKPhysicsBody(circleOfRadius: (mainTexture.size().width/2))
+                   size: CGSize(width: mainTexture.size().width, height: mainTexture.size().height) )
+        self.size.height = self.size.height/2
+        self.size.width = self.size.width/2
+        self.physicsBody = SKPhysicsBody(circleOfRadius: self.size.width * 0.5)
+        self.physicsBody?.restitution = 0.0;
+        self.physicsBody?.friction = 0.0
         self.name = "player"
         physicsInit()
     }
@@ -30,9 +34,9 @@ class CirclePlayer : SKSpriteNode {
     
     func physicsInit() {
         self.zPosition = 1
-        self.physicsBody?.categoryBitMask = 0b1 //player bit mask
-        self.physicsBody?.contactTestBitMask = 0b111 //collision the environment
-        self.physicsBody?.collisionBitMask = 0b111 //collision the environment
+        self.physicsBody?.categoryBitMask = 1 //player bit mask
+        self.physicsBody?.contactTestBitMask = 7//collision the environment
+        self.physicsBody?.collisionBitMask = 7 //collision the environment
         self.physicsBody?.affectedByGravity = true
         self.physicsBody?.allowsRotation = false
         self.physicsBody?.usesPreciseCollisionDetection = true
