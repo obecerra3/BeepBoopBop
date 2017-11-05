@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		193756E91FAE2E9E005F5A70 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 193756E81FAE2E9E005F5A70 /* Main.storyboard */; };
+		193756ED1FAE5D8A005F5A70 /* pixelFont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 193756EC1FAE5D8A005F5A70 /* pixelFont.ttf */; };
+		193B0BBE1FAE64CD004A3B3C /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193B0BBD1FAE64CD004A3B3C /* Enemy.swift */; };
 		19EEC9DB1FAE0EA200C53887 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EEC9DA1FAE0EA200C53887 /* AppDelegate.swift */; };
 		19EEC9E11FAE0EA200C53887 /* SquareScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EEC9E01FAE0EA200C53887 /* SquareScene.swift */; };
 		19EEC9E31FAE0EA200C53887 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EEC9E21FAE0EA200C53887 /* GameViewController.swift */; };
@@ -44,6 +46,8 @@
 
 /* Begin PBXFileReference section */
 		193756E81FAE2E9E005F5A70 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = SOURCE_ROOT; };
+		193756EC1FAE5D8A005F5A70 /* pixelFont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = pixelFont.ttf; path = "Beep Boop Bop/pixelFont.ttf"; sourceTree = SOURCE_ROOT; };
+		193B0BBD1FAE64CD004A3B3C /* Enemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 		19EEC9D71FAE0EA200C53887 /* Beep Boop Bop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Beep Boop Bop.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		19EEC9DA1FAE0EA200C53887 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		19EEC9E01FAE0EA200C53887 /* SquareScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareScene.swift; sourceTree = "<group>"; };
@@ -115,6 +119,7 @@
 		19EEC9D91FAE0EA200C53887 /* Beep Boop Bop */ = {
 			isa = PBXGroup;
 			children = (
+				193756EC1FAE5D8A005F5A70 /* pixelFont.ttf */,
 				19EECA111FAE127D00C53887 /* Scenes */,
 				19EECA0E1FAE122500C53887 /* Sprites */,
 				19EECA101FAE126900C53887 /* Animations */,
@@ -149,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				19EECA211FAE1AF000C53887 /* SquarePlayer.swift */,
+				193B0BBD1FAE64CD004A3B3C /* Enemy.swift */,
 			);
 			path = Sprites;
 			sourceTree = "<group>";
@@ -163,8 +169,8 @@
 		19EECA111FAE127D00C53887 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				19EEC9E01FAE0EA200C53887 /* SquareScene.swift */,
 				19EECA191FAE15F600C53887 /* StartScene.swift */,
+				19EEC9E01FAE0EA200C53887 /* SquareScene.swift */,
 				19EECA131FAE145800C53887 /* TriangleScene.swift */,
 				19EECA151FAE147600C53887 /* CircleScene.swift */,
 			);
@@ -293,6 +299,7 @@
 			files = (
 				193756E91FAE2E9E005F5A70 /* Main.storyboard in Resources */,
 				19EEC9E81FAE0EA200C53887 /* Assets.xcassets in Resources */,
+				193756ED1FAE5D8A005F5A70 /* pixelFont.ttf in Resources */,
 				19EEC9EB1FAE0EA200C53887 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -326,6 +333,7 @@
 				19EECA1C1FAE167000C53887 /* MoveJoystick.swift in Sources */,
 				19EECA201FAE16F200C53887 /* DataBank.swift in Sources */,
 				19EEC9E31FAE0EA200C53887 /* GameViewController.swift in Sources */,
+				193B0BBE1FAE64CD004A3B3C /* Enemy.swift in Sources */,
 				19EECA1E1FAE168700C53887 /* AimJoystick.swift in Sources */,
 				19EECA141FAE145800C53887 /* TriangleScene.swift in Sources */,
 				19EEC9DB1FAE0EA200C53887 /* AppDelegate.swift in Sources */,

@@ -1,5 +1,5 @@
 //
-//  DataBank.swift
+//  File.swift
 //  Beep Boop Bop
 //
 //  Created by Oscar Becerra on 11/4/17.
@@ -8,14 +8,14 @@
 
 import SpriteKit
 
-class DataBank {
+class Weapon {
     
-    var currentScore = 0
-    let defaults = UserDefaults.standard
+    var name = "starter"
+    var fireRate = 0.7
+    var damage = 1
     
-    init() {
-        
-    }
+    init() {}
+    
+    
     
 }
-
