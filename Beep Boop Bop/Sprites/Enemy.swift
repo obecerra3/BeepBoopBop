@@ -24,7 +24,7 @@ class Enemy : SKSpriteNode {
         
         super.init(texture: mainTexture, color: UIColor.red, size: CGSize(width: CGFloat(sceneWidth * 0.03), height: CGFloat(sceneWidth * 0.03)))
         self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: CGFloat(sceneWidth * 0.03), height: CGFloat(sceneWidth * 0.03)))
-        
+        name = "enemy"
         physicsInit()
     }
     

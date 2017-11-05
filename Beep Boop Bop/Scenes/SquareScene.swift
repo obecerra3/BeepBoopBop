@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class SquareScene: SKScene {
+class SquareScene: SKScene, SKPhysicsContactDelegate {
     
     let player = SquarePlayer()
     
@@ -35,12 +35,32 @@ class SquareScene: SKScene {
         let wall = SKShapeNode(rect: CGRect(origin: player.position, size: CGSize(width: size.width * 0.61, height: size.height * 0.92)))
         wall.physicsBody = SKPhysicsBody(edgeLoopFrom: CGRect(origin: player.position, size: CGSize(width: size.width * 0.61, height: size.height * 0.92)))
         wall.physicsBody?.categoryBitMask = 0b11
-        wall.physicsBody?.collisionBitMask = 0b1 & 0b10
+        wall.physicsBody?.collisionBitMask = 0b1 | 0b10
+        wall.physicsBody?.contactTestBitMask = 0b100
         wall.strokeColor = .white
         wall.physicsBody?.isDynamic = false
-        wall.lineWidth *= 2
+        wall.lineWidth *= 3
         wall.position = CGPoint(x: size.width * 0.195, y: size.height * 0.05)
+        wall.name = "wall"
         addChild(wall)
+    }
+    
+    
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        print("ithappened1")
+        guard let nodeA = contact.bodyA.node else { return }
+        guard let nodeB = contact.bodyB.node else { return }
+        print(nodeA.name)
+        print(nodeB.name)
+        
+        if nodeA.name == "laser" && nodeB.name == "wall" {
+            print("ithappened2")
+            nodeA.removeFromParent()
+        } else if nodeA.name == "wall" && nodeB.name == "laser" {
+            print("ithappened")
+            nodeB.removeFromParent()
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -93,7 +113,7 @@ class SquareScene: SKScene {
         laser.physicsBody?.affectedByGravity = false
         laser.physicsBody?.categoryBitMask = 0b100
         laser.physicsBody?.collisionBitMask = 0
-        laser.physicsBody?.contactTestBitMask = 0b1 & 0b10 & 0b11
+        laser.physicsBody?.contactTestBitMask = 0b1 | 0b10 | 0b11
         laser.physicsBody?.usesPreciseCollisionDetection = true
         laser.position = shooter.position
         addChild(laser)
