@@ -12,7 +12,8 @@ let data = DataBank()
 
 class StartScene: SKScene {
     
-    let startLabel = SKLabelNode(fontNamed: "pixelFont")
+    let startLabel = SKLabelNode(fontNamed: "pixelFont.ttf")
+    let highLabel = SKLabelNode(fontNamed: "pixelFont.ttf")
     
     override func didMove(to view: SKView) {
         
@@ -24,6 +25,12 @@ class StartScene: SKScene {
         startLabel.fontSize = size.width * 0.1
         startLabel.position = CGPoint(x: size.width * 0.5, y: size.height * 0.5)
         addChild(startLabel)
+        
+        highLabel.text = "High Score: \(data.defaults.integer(forKey: "highscore"))"
+        highLabel.fontColor = .white
+        highLabel.fontSize = size.width * 0.03
+        highLabel.position = CGPoint(x: size.width * 0.5, y: size.height * 0.3)
+        addChild(highLabel)
         
         data.currentScore = 0
     }

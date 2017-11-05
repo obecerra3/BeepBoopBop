@@ -46,12 +46,19 @@ class Enemy : SKSpriteNode {
     func loseHealth() {
         self.health -= 1
         if self.health < 1 {
+            self.physicsBody?.contactTestBitMask = 0
+            self.physicsBody?.categoryBitMask = 0
             let death = SKAction.scale(to: 0.0, duration: 0.5)
             let remover = SKAction.run { self.removeFromParent() }
             self.run(SKAction.sequence([death,remover]))
         }
     }
     
+    func trigger(_ c: CGPoint) {
+        var final = CGPoint(x: c.x - self.position.x, y: c.y - self.position.y)
+        final = final.normalized()
+        self.physicsBody?.velocity = CGVector(dx: final.x * 40, dy: final.y * 40)
+    }
 
     
     

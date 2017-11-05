@@ -15,11 +15,29 @@ class SquareScene: SKScene, SKPhysicsContactDelegate {
     let mover = MoveJoystick()
     let aimer = AimJoystick()
     
+    let score = SKLabelNode(fontNamed: "pixelFont.ttf")
+    let health = SKLabelNode(fontNamed: "pixelFont.ttf")
+    
     var enemyArray = [Enemy()]
+    
+    var upgradeCount = 0
     
     
     override func didMove(to view: SKView) {
         border()
+        enemyArray = []
+        
+        score.text = "Score: \(data.currentScore)"
+        score.fontSize = size.width * 0.02
+        score.fontColor = .white
+        score.position = CGPoint(x: size.width * 0.93, y: size.height * 0.93)
+        addChild(score)
+        
+        health.text = "Health: \(player.health)"
+        health.fontSize = size.width * 0.02
+        health.fontColor = .white
+        health.position = CGPoint(x: size.width * 0.07, y: size.height * 0.93)
+        addChild(health)
         
         player.position = CGPoint(x: size.width * 0.5, y: size.height * 0.5)
         addChild(player)
@@ -32,7 +50,7 @@ class SquareScene: SKScene, SKPhysicsContactDelegate {
         
         self.physicsWorld.contactDelegate = self
         
-        enemyTime()
+        enemyTime(0)
     }
     
     func border() {
@@ -49,15 +67,6 @@ class SquareScene: SKScene, SKPhysicsContactDelegate {
         addChild(wall)
     }
     
-    func enemyTime() {
-        let enemy1 = Enemy()
-        enemy1.position = CGPoint(x: size.width * 0.5, y: size.height * 0.8)
-        enemyArray.append(enemy1)
-        addChild(enemy1)
-    }
-    
-    
-    
     func didBegin(_ contact: SKPhysicsContact) {
         guard let nodeA = contact.bodyA.node else { return }
         guard let nodeB = contact.bodyB.node else { return }
@@ -68,8 +77,35 @@ class SquareScene: SKScene, SKPhysicsContactDelegate {
             if nodeB.alpha == 1.00 {
                 let target = nodes(at: nodeA.position)[0]
                 (target as? Enemy)!.loseHealth()
+                if (target as? Enemy)!.health < 1 {
+                    enemyArray.remove(at: enemyArray.index(of: (target as? Enemy)!)! )
+                    data.currentScore += 5
+                    score.text = "Score: \(data.currentScore)"
+                }
+                nodeB.removeFromParent()
+            }
+        } else if nodeB.name == "laser" && nodeA.name == "player" {
+            if nodeB.alpha == 0.99 {
+                let target = nodes(at: nodeA.position)[0]
+                (target as? SquarePlayer)!.loseHealth()
+                if (target as? SquarePlayer)!.health < 1 {
+                    gameOver()
+                }
+                nodeB.removeFromParent()
+            }
+        } else if nodeB.name == "enemy" && nodeA.name == "laser" {
+            if nodeA.alpha == 1.00 {
+                let target = nodes(at: nodeB.position)[0]
+                (target as? Enemy)!.loseHealth()
+                if (target as? Enemy)!.health < 1 {
+                    enemyArray.remove(at: enemyArray.index(of: (target as? Enemy)!)! )
+                    data.currentScore += 5
+                    score.text = "Score: \(data.currentScore)"
+                }
+                nodeA.removeFromParent()
             }
         }
+
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -83,6 +119,26 @@ class SquareScene: SKScene, SKPhysicsContactDelegate {
     
     
     override func update(_ currentTime: TimeInterval) {
+        health.text = "Health: \(player.health)"
+        
+        if enemyArray.count == 0 {
+            data.currentScore += 10
+            score.text = "Score: \(data.currentScore)"
+            self.removeAction(forKey: "enemy1")
+            enemyTime(data.currentScore)
+            
+            if arc4random_uniform(4) == 1 {
+                let f = SKLabelNode(fontNamed: "pixelFont.ttf")
+                f.text = "Gun Upgrade: \(self.upgradeCount)"
+                f.fontSize = size.width * 0.02
+                f.fontColor = .white
+                f.position = CGPoint(x: size.width * 0.07, y: size.height * 0.8)
+                addChild(f)
+                self.upgradeCount += 1
+                player.fireRate *= 0.5
+            }
+        }
+        
     }
     
     func moveHandlers() {
@@ -105,15 +161,15 @@ class SquareScene: SKScene, SKPhysicsContactDelegate {
             if let _ = self.action(forKey: "shoot") {
             } else if let _ = self.action(forKey: "waiter") {
             } else if jData.velocity.x != 0 && jData.velocity.y != 0{
-                let shoot = SKAction.run { self.shootLaser(self.player, jData.velocity, jData.angular) }
+                let shoot = SKAction.run { self.shootLaser1(self.player, jData.velocity, jData.angular) }
                 let wait = SKAction.wait(forDuration: self.player.fireRate)
                 self.run(SKAction.sequence([shoot,wait]), withKey: "shoot")
             }
         }
     }
     
-    func shootLaser (_ shooter: SquarePlayer, _ trajectory: CGPoint, _ angle: CGFloat) {
-        let laser = SKSpriteNode(color: shooter.laserColor, size: CGSize(width: shooter.size.width * 0.3, height: shooter.size.width * 0.7))
+    func shootLaser1 (_ shooter: SquarePlayer, _ trajectory: CGPoint, _ angle: CGFloat) {
+        let laser = SKSpriteNode(color: shooter.laserColor, size: CGSize(width: shooter.size.width * 0.45, height: shooter.size.width * 0.75))
         laser.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: shooter.size.width*0.5,
                                                              height: shooter.size.width*0.5))
         laser.zPosition = 1
@@ -125,19 +181,180 @@ class SquareScene: SKScene, SKPhysicsContactDelegate {
         laser.physicsBody?.contactTestBitMask = 8 | 1 | 2
         laser.physicsBody?.usesPreciseCollisionDetection = true
         laser.position = shooter.position
-        
-        if (shooter.laserColor == .red) {
-            laser.alpha = 0.99
-        }
+        laser.alpha = 1.0
         
         laser.name = "laser"
         addChild(laser)
         let t = trajectory.normalized()
-        laser.physicsBody?.velocity = CGVector(dx: t.x * 350, dy: t.y * 350)
+        laser.physicsBody?.velocity = CGVector(dx: t.x * 325, dy: t.y * 325)
         
         let remove = SKAction.run { laser.removeFromParent() }
         let wait = SKAction.wait(forDuration: 1.0)
         self.run(SKAction.sequence([wait,remove]))
+    }
+    
+    func shootLaser2 (_ shooter: Enemy, _ trajectory: CGPoint, _ angle: CGFloat) {
+        let laser = SKSpriteNode(color: shooter.laserColor, size: CGSize(width: shooter.size.width * 0.4, height: shooter.size.width * 0.7))
+        laser.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: shooter.size.width*0.5,
+                                                              height: shooter.size.width*0.5))
+        laser.zPosition = 1
+        laser.zRotation = angle
+        laser.physicsBody?.allowsRotation = false
+        laser.physicsBody?.affectedByGravity = false
+        laser.physicsBody?.categoryBitMask = 4
+        laser.physicsBody?.collisionBitMask = 0
+        laser.physicsBody?.contactTestBitMask = 8 | 1 | 2
+        laser.physicsBody?.usesPreciseCollisionDetection = true
+        laser.position = shooter.position
+        laser.alpha = 0.99
+        
+        laser.name = "laser"
+        addChild(laser)
+        let t = trajectory.normalized()
+        laser.physicsBody?.velocity = CGVector(dx: t.x * 200, dy: t.y * 200)
+        
+        let remove = SKAction.run { laser.removeFromParent() }
+        let wait = SKAction.wait(forDuration: 1.0)
+        self.run(SKAction.sequence([wait,remove]))
+    }
+    
+    func gameOver() {
+        if data.currentScore > data.defaults.integer(forKey: "highscore") {
+            data.defaults.set(data.currentScore, forKey: "highscore")
+        }
+        
+        self.removeAllActions()
+        self.removeAllChildren()
+        let view = self.view as SKView!
+        let scene = StartScene(size: (view?.bounds.size)!)
+        scene.scaleMode = .resizeFill
+        scene.backgroundColor = .black
+        view?.presentScene(scene)
+    }
+    
+    func enemyTime(_ s : Int) {
+        
+        if s == 0 {
+            let enemy1 = Enemy()
+            enemy1.position = CGPoint(x: size.width * 0.5, y: size.height * 0.8)
+            enemyArray.append(enemy1)
+            addChild(enemy1)
+        } else if s < 40 {
+            let enemy2 = Enemy()
+            enemy2.position = CGPoint(x: size.width * 0.5, y: size.height * 0.8)
+            enemyArray.append(enemy2)
+            addChild(enemy2)
+            
+            let enemy1 = Enemy()
+            enemy1.position = CGPoint(x: size.width * 0.3, y: size.height * 0.2)
+            enemyArray.append(enemy1)
+            addChild(enemy1)
+            
+            let enemy3 = Enemy()
+            enemy3.position = CGPoint(x: size.width * 0.7, y: size.height * 0.2)
+            enemyArray.append(enemy3)
+            addChild(enemy3)
+        } else if s < 80 {
+            player.gainHealth()
+            
+            let enemy1 = Enemy()
+            enemy1.position = CGPoint(x: size.width * 0.5, y: size.height * 0.85)
+            enemyArray.append(enemy1)
+            addChild(enemy1)
+            
+            let enemy2 = Enemy()
+            enemy2.position = CGPoint(x: size.width * 0.3, y: size.height * 0.85)
+            enemyArray.append(enemy2)
+            addChild(enemy2)
+            
+            let enemy3 = Enemy()
+            enemy3.position = CGPoint(x: size.width * 0.7, y: size.height * 0.85)
+            enemyArray.append(enemy3)
+            addChild(enemy3)
+            
+            let enemy4 = Enemy()
+            enemy4.position = CGPoint(x: size.width * 0.5, y: size.height * 0.15)
+            enemyArray.append(enemy4)
+            addChild(enemy4)
+            
+            let enemy5 = Enemy()
+            enemy5.position = CGPoint(x: size.width * 0.3, y: size.height * 0.15)
+            enemyArray.append(enemy5)
+            addChild(enemy5)
+            
+            let enemy6 = Enemy()
+            enemy6.position = CGPoint(x: size.width * 0.7, y: size.height * 0.15)
+            enemyArray.append(enemy6)
+            addChild(enemy6)
+        } else {
+            player.gainHealth()
+            
+            let enemy1 = Enemy()
+            enemy1.position = CGPoint(x: size.width * 0.5, y: size.height * 0.85)
+            enemyArray.append(enemy1)
+            addChild(enemy1)
+            
+            let enemy2 = Enemy()
+            enemy2.position = CGPoint(x: size.width * 0.3, y: size.height * 0.85)
+            enemyArray.append(enemy2)
+            addChild(enemy2)
+            
+            let enemy3 = Enemy()
+            enemy3.position = CGPoint(x: size.width * 0.7, y: size.height * 0.85)
+            enemyArray.append(enemy3)
+            addChild(enemy3)
+            
+            let enemy4 = Enemy()
+            enemy4.position = CGPoint(x: size.width * 0.5, y: size.height * 0.5)
+            enemyArray.append(enemy4)
+            addChild(enemy4)
+            
+            let enemy5 = Enemy()
+            enemy5.position = CGPoint(x: size.width * 0.3, y: size.height * 0.5)
+            enemyArray.append(enemy5)
+            addChild(enemy5)
+            
+            let enemy6 = Enemy()
+            enemy6.position = CGPoint(x: size.width * 0.7, y: size.height * 0.5)
+            enemyArray.append(enemy6)
+            addChild(enemy6)
+            
+            let enemy7 = Enemy()
+            enemy7.position = CGPoint(x: size.width * 0.5, y: size.height * 0.15)
+            enemyArray.append(enemy7)
+            addChild(enemy7)
+            
+            let enemy8 = Enemy()
+            enemy8.position = CGPoint(x: size.width * 0.3, y: size.height * 0.15)
+            enemyArray.append(enemy8)
+            addChild(enemy8)
+            
+            let enemy9 = Enemy()
+            enemy9.position = CGPoint(x: size.width * 0.7, y: size.height * 0.15)
+            enemyArray.append(enemy9)
+            addChild(enemy9)
+        }
+        
+        
+        let triggering = SKAction.run {
+            for e in self.enemyArray {
+                e.trigger(self.player.position)
+            }
+        }
+        
+        let firing = SKAction.run {
+            for e in self.enemyArray {
+                if arc4random_uniform(2) == 1 {
+                    self.shootLaser2(e,  CGPoint(x: self.player.position.x - e.position.x , y: self.player.position.y - e.position.y) ,
+                                     atan( self.player.position.x / self.player.position.y ))
+                }
+            }
+        }
+        
+        let waiting = SKAction.wait(forDuration: 1.75)
+        
+        run(SKAction.repeatForever(SKAction.sequence([waiting,triggering,firing])), withKey: "enemy1")
+        
     }
     
 }

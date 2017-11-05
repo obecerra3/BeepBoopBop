@@ -15,7 +15,7 @@ class SquarePlayer : SKSpriteNode {
     var laserColor = UIColor.blue
     var damage = 1
     var health = 3
-    var fireRate = 0.4
+    var fireRate = 0.3
     
     let sceneWidth = data.defaults.float(forKey: "width")
     let sceneHeight = data.defaults.float(forKey: "height")
